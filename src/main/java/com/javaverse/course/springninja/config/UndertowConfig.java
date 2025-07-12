@@ -1,4 +1,4 @@
-package com.javaverse.course.spring_ninja.config;
+package com.javaverse.course.springninja.config;
 
 import io.undertow.UndertowOptions;
 import org.springframework.boot.web.embedded.undertow.UndertowServletWebServerFactory;

@@ -1,4 +1,4 @@
-package com.javaverse.course.spring_ninja;
+package com.javaverse.course.springninja;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
