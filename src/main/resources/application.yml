@@ -20,7 +20,7 @@ spring:
       path: /h2
 
   datasource:
-    url: jdbc:h2:file:C:/Users/SamuchPC/Documents/e-learning/springboot-zero-to-hero/Course/H2/course-db;DB_CLOSE_DELAY=10;AUTO_RECONNECT=TRUE;CIPHER=AES;
+    url: jdbc:h2:file:../database/Course/H2/course-db;DB_CLOSE_DELAY=10;AUTO_RECONNECT=TRUE;CIPHER=AES;
     username: admin
     password: 'P@ssw0rd 1234'
 
