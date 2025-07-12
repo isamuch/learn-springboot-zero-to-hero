@@ -36,4 +36,4 @@ out/
 ### VS Code ###
 .vscode/
 /undertow-accesslog/access_log.log
-/log/application.log
+/log/
