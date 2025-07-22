@@ -8,7 +8,7 @@ server:
   undertow:
     accesslog:
       enabled: true
-      dir: undertow-accesslog
+      dir: ../undertow-accesslog
       pattern: '%t %I %r %s %b %D'
   servlet:
     context-path: '/javaverse'
