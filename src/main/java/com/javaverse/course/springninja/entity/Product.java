@@ -2,9 +2,10 @@ package com.javaverse.course.springninja.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
-
+import org.hibernate.annotations.Immutable;
 
 @Data
+@Immutable
 @Entity(name = "products")
 @SequenceGenerator(name="products_seq")
 public class Product {
