@@ -1,7 +1,9 @@
 package com.javaverse.course.springninja;
 
+import com.javaverse.course.springninja.entity.EnumExample;
 import com.javaverse.course.springninja.entity.JpaCallbacksExample;
 import com.javaverse.course.springninja.entity.Product;
+import com.javaverse.course.springninja.repo.EnumRepo;
 import com.javaverse.course.springninja.repo.JpaCallbacksRepo;
 import com.javaverse.course.springninja.repo.ProductRepo;
 import lombok.extern.log4j.Log4j2;
@@ -15,10 +17,16 @@ public class SpringNinjaApplication implements CommandLineRunner {
 
     private final ProductRepo repo;
     private final JpaCallbacksRepo jpaCallbacksRepo;
+    private final EnumRepo enumRepo;
 
-    public SpringNinjaApplication(ProductRepo repo, JpaCallbacksRepo jpaCallbacksRepo) {
+    public SpringNinjaApplication(
+            ProductRepo repo,
+            JpaCallbacksRepo jpaCallbacksRepo,
+            EnumRepo enumRepo
+    ) {
         this.repo = repo;
         this.jpaCallbacksRepo = jpaCallbacksRepo;
+        this.enumRepo = enumRepo;
     }
 
     public static void main(String[] args) {
@@ -28,7 +36,8 @@ public class SpringNinjaApplication implements CommandLineRunner {
     @Override
     public void run(String... args) {
         // stepNine();
-        stepEleven();
+        // stepEleven();
+        stepTwelve();
     }
 
     // Example for Immutable Entity
@@ -84,4 +93,26 @@ public class SpringNinjaApplication implements CommandLineRunner {
         log.info(() -> jpaCallbacksRepo.findAll());
     }
 
+    // Example Mapping Enums
+    public void stepTwelve() {
+        EnumExample p1 = new EnumExample();
+        p1.setName("AAA");
+        p1.setCode("01");
+        p1.setStatus(EnumExample.Status.APPROVED);
+        enumRepo.save(p1);
+
+        EnumExample p2 = new EnumExample();
+        p2.setName("BBB");
+        p2.setCode("02");
+        p2.setStatus(EnumExample.Status.NOT_APPROVED);
+        enumRepo.save(p2);
+
+        EnumExample p3 = new EnumExample();
+        p3.setName("CCC");
+        p3.setCode("03");
+        p3.setStatus(EnumExample.Status.PENDING);
+        enumRepo.save(p3);
+
+        log.info(() -> enumRepo.findAll());
+    }
 }
