@@ -23,9 +23,10 @@ public class SpringNinjaApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) {
-        stepNine();
+        // stepNine();
     }
 
+    // Example for Immutable Entity
     public void stepNine() {
         // INSERT
         log.info(() -> "BEGIN INSERT");
