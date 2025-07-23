@@ -1,6 +1,8 @@
 package com.javaverse.course.springninja;
 
+import com.javaverse.course.springninja.entity.JpaCallbacksExample;
 import com.javaverse.course.springninja.entity.Product;
+import com.javaverse.course.springninja.repo.JpaCallbacksRepo;
 import com.javaverse.course.springninja.repo.ProductRepo;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.boot.CommandLineRunner;
@@ -12,9 +14,11 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class SpringNinjaApplication implements CommandLineRunner {
 
     private final ProductRepo repo;
+    private final JpaCallbacksRepo jpaCallbacksRepo;
 
-    public SpringNinjaApplication(ProductRepo repo) {
+    public SpringNinjaApplication(ProductRepo repo, JpaCallbacksRepo jpaCallbacksRepo) {
         this.repo = repo;
+        this.jpaCallbacksRepo = jpaCallbacksRepo;
     }
 
     public static void main(String[] args) {
@@ -24,6 +28,7 @@ public class SpringNinjaApplication implements CommandLineRunner {
     @Override
     public void run(String... args) {
         // stepNine();
+        stepEleven();
     }
 
     // Example for Immutable Entity
@@ -59,6 +64,24 @@ public class SpringNinjaApplication implements CommandLineRunner {
         } catch (Exception e) {
             log.error(e.getMessage());
         }
+    }
+
+    // Example JPA Callbacks
+    public void stepEleven() {
+        JpaCallbacksExample p1 = new JpaCallbacksExample();
+        p1.setName("AAA");
+        p1.setCode("01");
+        jpaCallbacksRepo.save(p1);
+
+        JpaCallbacksExample p2 = new JpaCallbacksExample();
+        p2.setName("BBB");
+        p2.setCode("02");
+        jpaCallbacksRepo.save(p2);
+
+        p2.setName("BBB-1");
+        jpaCallbacksRepo.save(p2);
+
+        log.info(() -> jpaCallbacksRepo.findAll());
     }
 
 }
