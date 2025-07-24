@@ -1,8 +1,10 @@
 package com.javaverse.course.springninja;
 
+import com.javaverse.course.springninja.entity.DryEntityExample;
 import com.javaverse.course.springninja.entity.EnumExample;
 import com.javaverse.course.springninja.entity.JpaCallbacksExample;
 import com.javaverse.course.springninja.entity.Product;
+import com.javaverse.course.springninja.repo.DryEntityRepo;
 import com.javaverse.course.springninja.repo.EnumRepo;
 import com.javaverse.course.springninja.repo.JpaCallbacksRepo;
 import com.javaverse.course.springninja.repo.ProductRepo;
@@ -18,15 +20,18 @@ public class SpringNinjaApplication implements CommandLineRunner {
     private final ProductRepo repo;
     private final JpaCallbacksRepo jpaCallbacksRepo;
     private final EnumRepo enumRepo;
+    private final DryEntityRepo dryEntityRepo;
 
     public SpringNinjaApplication(
             ProductRepo repo,
             JpaCallbacksRepo jpaCallbacksRepo,
-            EnumRepo enumRepo
+            EnumRepo enumRepo,
+            DryEntityRepo dryEntityRepo
     ) {
         this.repo = repo;
         this.jpaCallbacksRepo = jpaCallbacksRepo;
         this.enumRepo = enumRepo;
+        this.dryEntityRepo = dryEntityRepo;
     }
 
     public static void main(String[] args) {
@@ -37,7 +42,8 @@ public class SpringNinjaApplication implements CommandLineRunner {
     public void run(String... args) {
         // stepNine();
         // stepEleven();
-        stepTwelve();
+        // stepTwelve();
+        stepThirteen();
     }
 
     // Example for Immutable Entity
@@ -114,5 +120,15 @@ public class SpringNinjaApplication implements CommandLineRunner {
         enumRepo.save(p3);
 
         log.info(() -> enumRepo.findAll());
+    }
+
+    public void stepThirteen() {
+        DryEntityExample p1 = new DryEntityExample();
+        p1.setName("AAA");
+        p1.setCode("01");
+        dryEntityRepo.save(p1);
+
+        p1.setDetail("abcd");
+        dryEntityRepo.save(p1);
     }
 }
