@@ -1,15 +1,13 @@
 package com.javaverse.course.springninja.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 @EqualsAndHashCode(callSuper = true)
 @Data
 @Entity
+// @ExcludeDefaultListeners กรณ๊ที่ต้องการ fields แต่ไม่อยากได้ Listeners
 public class DryEntityExample extends CommonEntity {
 
     @Id
