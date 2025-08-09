@@ -7,7 +7,7 @@ import lombok.Data;
 import org.hibernate.annotations.Nationalized;
 
 @Data
-@Entity(name="EX14_MAPPING_LOB")
+@Entity(name="ex14_mapping_lob")
 public class Example14MappingLOB extends CommonEntity {
 
     @EmbeddedId

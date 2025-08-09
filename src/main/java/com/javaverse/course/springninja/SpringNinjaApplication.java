@@ -1,8 +1,8 @@
 package com.javaverse.course.springninja;
 
-import com.javaverse.course.springninja.entity.DryEntityExample;
-import com.javaverse.course.springninja.entity.EnumExample;
-import com.javaverse.course.springninja.entity.JpaCallbacksExample;
+import com.javaverse.course.springninja.entity.Example13DryEntity;
+import com.javaverse.course.springninja.entity.Example12Enum;
+import com.javaverse.course.springninja.entity.Example11JpaCallbacks;
 import com.javaverse.course.springninja.entity.Product;
 import com.javaverse.course.springninja.repo.DryEntityRepo;
 import com.javaverse.course.springninja.repo.EnumRepo;
@@ -83,12 +83,12 @@ public class SpringNinjaApplication implements CommandLineRunner {
 
     // Example JPA Callbacks
     public void stepEleven() {
-        JpaCallbacksExample p1 = new JpaCallbacksExample();
+        Example11JpaCallbacks p1 = new Example11JpaCallbacks();
         p1.setName("AAA");
         p1.setCode("01");
         jpaCallbacksRepo.save(p1);
 
-        JpaCallbacksExample p2 = new JpaCallbacksExample();
+        Example11JpaCallbacks p2 = new Example11JpaCallbacks();
         p2.setName("BBB");
         p2.setCode("02");
         jpaCallbacksRepo.save(p2);
@@ -101,29 +101,29 @@ public class SpringNinjaApplication implements CommandLineRunner {
 
     // Example Mapping Enums
     public void stepTwelve() {
-        EnumExample p1 = new EnumExample();
+        Example12Enum p1 = new Example12Enum();
         p1.setName("AAA");
         p1.setCode("01");
-        p1.setStatus(EnumExample.Status.APPROVED);
+        p1.setStatus(Example12Enum.Status.APPROVED);
         enumRepo.save(p1);
 
-        EnumExample p2 = new EnumExample();
+        Example12Enum p2 = new Example12Enum();
         p2.setName("BBB");
         p2.setCode("02");
-        p2.setStatus(EnumExample.Status.NOT_APPROVED);
+        p2.setStatus(Example12Enum.Status.NOT_APPROVED);
         enumRepo.save(p2);
 
-        EnumExample p3 = new EnumExample();
+        Example12Enum p3 = new Example12Enum();
         p3.setName("CCC");
         p3.setCode("03");
-        p3.setStatus(EnumExample.Status.PENDING);
+        p3.setStatus(Example12Enum.Status.PENDING);
         enumRepo.save(p3);
 
         log.info(() -> enumRepo.findAll());
     }
 
     public void stepThirteen() {
-        DryEntityExample p1 = new DryEntityExample();
+        Example13DryEntity p1 = new Example13DryEntity();
         p1.setName("AAA");
         p1.setCode("01");
         dryEntityRepo.save(p1);

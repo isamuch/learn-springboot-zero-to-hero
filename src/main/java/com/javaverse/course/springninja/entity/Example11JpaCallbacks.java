@@ -5,9 +5,10 @@ import lombok.Data;
 
 import java.time.LocalDateTime;
 
-@Entity
+
 @Data
-public class JpaCallbacksExample {
+@Entity(name="ex11_jpa_callbacks")
+public class Example11JpaCallbacks {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

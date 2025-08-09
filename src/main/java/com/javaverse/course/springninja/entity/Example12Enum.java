@@ -6,11 +6,11 @@ import lombok.Data;
 import java.time.LocalDateTime;
 
 @Data
-@Entity(name = "enum_example")
+@Entity(name = "ex12_enum")
 @Table(indexes = {
-        @Index(name = "enum_example_idx_status", columnList = "status")
+        @Index(name = "ex12_enum_idx_status", columnList = "status")
 })
-public class EnumExample {
+public class Example12Enum {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

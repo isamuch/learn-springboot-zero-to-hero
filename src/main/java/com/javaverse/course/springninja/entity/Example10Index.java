@@ -4,9 +4,9 @@ import jakarta.persistence.*;
 import lombok.Data;
 
 @Data
-@Entity(name ="tb_ex_index")
-@Table(indexes = {@Index(name = "tb_ex_index_code_and_name_unique", columnList = "code, name", unique = true)})
-public class IndexExample {
+@Entity(name ="ex10_index")
+@Table(indexes = {@Index(name = "ex10_index_index_code_and_name_unique", columnList = "code, name", unique = true)})
+public class Example10Index {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
