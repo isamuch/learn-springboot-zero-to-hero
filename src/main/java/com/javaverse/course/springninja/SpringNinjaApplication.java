@@ -17,6 +17,7 @@ public class SpringNinjaApplication implements CommandLineRunner {
     private final DryEntityRepo dryEntityRepo;
     private final JpaAttributeConverterRepo jpaAttributeConverterRepo;
     private final DynamicInsertAndUpdateRepo sixteenRepo;
+    private final ElementCollectionRepo seventeenRepo;
 
     public SpringNinjaApplication(
             ProductRepo repo,
@@ -24,7 +25,8 @@ public class SpringNinjaApplication implements CommandLineRunner {
             EnumRepo enumRepo,
             DryEntityRepo dryEntityRepo,
             JpaAttributeConverterRepo jpaAttributeConverterRepo,
-            DynamicInsertAndUpdateRepo sixteenRepo
+            DynamicInsertAndUpdateRepo sixteenRepo,
+            ElementCollectionRepo seventeenRepo
     ) {
         this.repo = repo;
         this.jpaCallbacksRepo = jpaCallbacksRepo;
@@ -32,6 +34,7 @@ public class SpringNinjaApplication implements CommandLineRunner {
         this.dryEntityRepo = dryEntityRepo;
         this.jpaAttributeConverterRepo = jpaAttributeConverterRepo;
         this.sixteenRepo = sixteenRepo;
+        this.seventeenRepo = seventeenRepo;
     }
 
     public static void main(String[] args) {
@@ -45,7 +48,8 @@ public class SpringNinjaApplication implements CommandLineRunner {
         // stepTwelve();
         // stepThirteen();
         // stepFifteen();
-        stepSixteen();
+        // stepSixteen();
+        stepSeventeen();
     }
 
     // Example for Immutable Entity
@@ -172,5 +176,26 @@ public class SpringNinjaApplication implements CommandLineRunner {
         log.info(() -> "Update Order");
         p1.setName("BBB");
         sixteenRepo.save(p1);
+    }
+
+    // Example Element Collection
+    public void stepSeventeen() {
+        Example17ElementCollection p1 = new Example17ElementCollection();
+        p1.setName("Coffee");
+        p1.setCode("P001");
+        p1.getAliasNames().add("Java");
+        p1.getAliasNames().add("Cuppa");
+        p1.getAliasNames().add("Caffeine");
+        seventeenRepo.save(p1);
+        log.info(p1);
+
+        Example17ElementCollection p2 = new Example17ElementCollection();
+        p2.setName("Tea");
+        p2.setCode("P002");
+        p2.getAliasNames().add("Chai");
+        p2.getAliasNames().add("Brew");
+        p2.getAliasNames().add("Camellia");
+        seventeenRepo.save(p2);
+        log.info(p2);
     }
 }
