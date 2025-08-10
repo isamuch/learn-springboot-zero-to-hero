@@ -1,13 +1,7 @@
 package com.javaverse.course.springninja;
 
-import com.javaverse.course.springninja.entity.Example13DryEntity;
-import com.javaverse.course.springninja.entity.Example12Enum;
-import com.javaverse.course.springninja.entity.Example11JpaCallbacks;
-import com.javaverse.course.springninja.entity.Product;
-import com.javaverse.course.springninja.repo.DryEntityRepo;
-import com.javaverse.course.springninja.repo.EnumRepo;
-import com.javaverse.course.springninja.repo.JpaCallbacksRepo;
-import com.javaverse.course.springninja.repo.ProductRepo;
+import com.javaverse.course.springninja.entity.*;
+import com.javaverse.course.springninja.repo.*;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -21,17 +15,20 @@ public class SpringNinjaApplication implements CommandLineRunner {
     private final JpaCallbacksRepo jpaCallbacksRepo;
     private final EnumRepo enumRepo;
     private final DryEntityRepo dryEntityRepo;
+    private final JpaAttributeConverterRepo jpaAttributeConverterRepo;
 
     public SpringNinjaApplication(
             ProductRepo repo,
             JpaCallbacksRepo jpaCallbacksRepo,
             EnumRepo enumRepo,
-            DryEntityRepo dryEntityRepo
+            DryEntityRepo dryEntityRepo,
+            JpaAttributeConverterRepo jpaAttributeConverterRepo
     ) {
         this.repo = repo;
         this.jpaCallbacksRepo = jpaCallbacksRepo;
         this.enumRepo = enumRepo;
         this.dryEntityRepo = dryEntityRepo;
+        this.jpaAttributeConverterRepo = jpaAttributeConverterRepo;
     }
 
     public static void main(String[] args) {
@@ -43,7 +40,8 @@ public class SpringNinjaApplication implements CommandLineRunner {
         // stepNine();
         // stepEleven();
         // stepTwelve();
-        stepThirteen();
+        // stepThirteen();
+        stepFifteen();
     }
 
     // Example for Immutable Entity
@@ -122,6 +120,7 @@ public class SpringNinjaApplication implements CommandLineRunner {
         log.info(() -> enumRepo.findAll());
     }
 
+    // Example Dry Entity
     public void stepThirteen() {
         Example13DryEntity p1 = new Example13DryEntity();
         p1.setName("AAA");
@@ -130,5 +129,31 @@ public class SpringNinjaApplication implements CommandLineRunner {
 
         p1.setDetail("abcd");
         dryEntityRepo.save(p1);
+    }
+
+    // Example Jpa Attribute Converter
+    public void stepFifteen() {
+        // INSERT
+        log.info(() -> "BEGIN INSERT");
+
+        Example15JpaAttributeConverter p1 = new Example15JpaAttributeConverter();
+        p1.setName("AAA");
+        p1.setCode("01");
+        p1.setStatus(Example15JpaAttributeConverter.Status.APPROVED);
+        jpaAttributeConverterRepo.save(p1);
+
+        Example15JpaAttributeConverter p2 = new Example15JpaAttributeConverter();
+        p2.setName("BBB");
+        p2.setCode("02");
+        p2.setStatus(Example15JpaAttributeConverter.Status.PENDING);
+        jpaAttributeConverterRepo.save(p2);
+
+        Example15JpaAttributeConverter p3 = new Example15JpaAttributeConverter();
+        p3.setName("CCC");
+        p3.setCode("03");
+        p3.setStatus(Example15JpaAttributeConverter.Status.NOT_APPROVED);
+        jpaAttributeConverterRepo.save(p3);
+
+        log.info(() -> "AFTER INSERT : " + jpaAttributeConverterRepo.findAll());
     }
 }
