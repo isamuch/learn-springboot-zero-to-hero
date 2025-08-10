@@ -16,19 +16,22 @@ public class SpringNinjaApplication implements CommandLineRunner {
     private final EnumRepo enumRepo;
     private final DryEntityRepo dryEntityRepo;
     private final JpaAttributeConverterRepo jpaAttributeConverterRepo;
+    private final DynamicInsertAndUpdateRepo sixteenRepo;
 
     public SpringNinjaApplication(
             ProductRepo repo,
             JpaCallbacksRepo jpaCallbacksRepo,
             EnumRepo enumRepo,
             DryEntityRepo dryEntityRepo,
-            JpaAttributeConverterRepo jpaAttributeConverterRepo
+            JpaAttributeConverterRepo jpaAttributeConverterRepo,
+            DynamicInsertAndUpdateRepo sixteenRepo
     ) {
         this.repo = repo;
         this.jpaCallbacksRepo = jpaCallbacksRepo;
         this.enumRepo = enumRepo;
         this.dryEntityRepo = dryEntityRepo;
         this.jpaAttributeConverterRepo = jpaAttributeConverterRepo;
+        this.sixteenRepo = sixteenRepo;
     }
 
     public static void main(String[] args) {
@@ -41,7 +44,8 @@ public class SpringNinjaApplication implements CommandLineRunner {
         // stepEleven();
         // stepTwelve();
         // stepThirteen();
-        stepFifteen();
+        // stepFifteen();
+        stepSixteen();
     }
 
     // Example for Immutable Entity
@@ -155,5 +159,18 @@ public class SpringNinjaApplication implements CommandLineRunner {
         jpaAttributeConverterRepo.save(p3);
 
         log.info(() -> "AFTER INSERT : " + jpaAttributeConverterRepo.findAll());
+    }
+
+    // Example Dynamic Insert and Update
+    public void stepSixteen() {
+        log.info(() -> "Save Order");
+        Example16DynamicInsertAndUpdate p1 = new Example16DynamicInsertAndUpdate();
+        p1.setName("AAA");
+        p1.setCode("001");
+        sixteenRepo.save(p1);
+
+        log.info(() -> "Update Order");
+        p1.setName("BBB");
+        sixteenRepo.save(p1);
     }
 }
